@@ -1,0 +1,17 @@
+version: "3"
+services:
+  backend:
+    environment:
+      - GROUPIE_IMAGES_URL=/api/images/
+    build:
+      context: backend
+  frontend:
+    environment:
+      - GROUPIE_BACKEND_LOCALHOST=backend:8080
+      - NEXT_PUBLIC_GROUPIE_BACKEND_HOST=
+    build:
+      context: frontend
+    depends_on:
+      - backend 
+    ports:
+      - 80:3000
